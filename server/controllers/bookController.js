@@ -2,11 +2,25 @@ const db = require('../db')
 const books = require('../models/books')
 const getAllBooks =  async (req,res) =>
 {
-    console.log('books',books)
-    const Books= await books.findAll();
-    res.status(200).json({
-        Books
-    })
+    const genre = req.query.genre;
+    const author = req.query.author;
+    let where = {};
+    if (genre) {
+      where.genre = genre;
+    }
+    if (author) {
+      where.author = author;
+    }
+  
+    const Books= await books.findAll({where});
+    if(Books&&Books.length&&Books.length>0){
+        res.status(200).json({
+            Books}) 
+        
+    }
+    else{
+        res.status(400).send("no books")
+    }
 }
 const addBook =  async (req,res) =>
 {   const Book = await books.findOne({where:{"bookname":req.body.bookname}});
