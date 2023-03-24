@@ -1,7 +1,6 @@
 const express=require('express');
 const sequelize = require('./db');
-const libraryRoutes=require('./routes')
-const book = require("./models/books");
+const libraryRoutes=require('./Routers/bookRoutes')
 var bodyParser = require('body-parser');
 
 

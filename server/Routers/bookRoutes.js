@@ -1,5 +1,5 @@
 const {Router}=require('express');
-const bookController = require('./controllers/bookController')
+const bookController = require('../controllers/bookController')
 const route = Router();
 
 route.get('/',(req,res)=>{
